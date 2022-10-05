@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Movie App</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            overflow-x: hidden;
+        }
+        .container{
+            /* border: 2px solid red; */
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+            /* top: -660px; */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: url(./images/PK-en-20220613-popsignuptwoweeks-perspective_alpha_website_small.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            /* z-index: -1; */
+            justify-content:flex-start;
+        }
+        .navbar{
+            width: 100%;
+            height: 20vh;
+            display: flex;
+            padding-left: 20px;
+            flex-direction: row;
+            z-index: 10;
+            justify-content: space-between;
+            align-items: center;
+            /* border: 2px solid red; */
+        }
+        .logo{
+            width: 200px;
+            height: 15vh;
+            /* border: 2px solid red; */
+            position: relative;
+            z-index: 10;
+        }
+        .logo img{
+            position: absolute;
+            width: 200px;
+            z-index: 10;
+        }
+        .con-overlay{
+            width: 100%;
+            opacity: .5;
+            height: 100%;
+            background-color: black;
+            position: absolute;
+        }
+        .buttons{
+            width: 400px;
+            height: 15vh;
+            /* border: 2px solid red; */
+            display: flex;
+            align-items: center;
+            z-index: 10;
+            margin: 10px;
+        }
+        .buttons button{
+            margin: 10px;
+            padding: 10px 35px;
+            border-radius: 10px;
+            background-color: #E50914;
+            color: white;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .buttons button:hover{
+            background-color: transparent;
+            color: #E50914;
+            border:1px solid #E50914;
+        }
+        .content{
+            color: white;
+            z-index: 10;
+            font-family: "Netflix Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 30px;
+            font-weight: 700;
+            text-align: center;
+            padding: 20px;
+        }
+        .content input{
+            width: 500px;
+            height: 50px;
+            margin-top: 20px;
+            border-radius: 50px;
+            padding: 20px;
+            z-index: 100;
+            border: none;
+        }
+        .content ul{
+            list-style-type: none;
+        }
+        .search-icon{
+            position: relative;
+            left: -50px;
+            top: 5px;
+            color:red;
+        }
+        .search-icon:hover{
+            color: black;
+            cursor: pointer;
+        }
+        .show{
+            width: 100%;
+            min-height: 170vh;
+            /* border: 2px solid red; */
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            flex-direction: column;
+            color: white;
+        }
+        .s{
+            z-index: 10;
+            flex-wrap: wrap;
+            width: 100%;
+            min-height: 60vh;
+            display: flex;
+            padding: 20px;
+            /* flex-direction: row; */
+            /* border: 2px solid red; */
+        }
+        .s-content{
+            width: 250px;
+            height: 30vh;
+            display: flex;
+            margin: 5px auto;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: #E50914;
+            animation: open 1s forwards linear;
+        }
+        @keyframes open {
+            0%{
+                transform: scale(0);
+            }
+            100%{
+                transform: scale(1);
+            }
+        }
+        .s-content h1{
+            font-size: 18px;
+        }
+        .s-content img{
+            width: 100px;
+            height: 100px;
+        }
+        .s-content button{
+            padding: 5px 8px;
+            border-radius: 20px;
+            border: none;
+            font-size: 10px;
+            transition: 0.34s ease all;
+        }
+        .s-content button:hover{
+            color: white;
+            border: 1px solid white;
+            background-color: #E50914;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <img src="./images/Netflix_Logo_PMS.png" alt="">
+            </div>
+            <div class="buttons">
+            <button class="btn">Latest</button>
+            <button class="btn">English</button>
+            <button class="btn">Hindi</button>
+            </div>
+        </div>
+        <div class="content">
+            <h1>Unlimited movies, <br> TV shows, and more.</h1>
+            <ul>
+                <li>
+                    <form action="">
+                    <input type="text" class="search" placeholder="Enter movie name" type="submit">
+                    <i class="fa-solid fa-magnifying-glass search-icon" id="search"></i>
+                    </form>
+                </li>
+            </ul>
+        </div>
+        <div class="show">
+            <div class="s">
+                <!-- <div class="s-content">
+                    <img src="./images/Netflix_Logo_PMS.png" alt="">
+                </div>
+                <div class="s-content">
+                    <img src="./images/Netflix_Logo_PMS.png" alt="">
+                </div><div class="s-content">
+                    <img src="./images/Netflix_Logo_PMS.png" alt="">
+                </div><div class="s-content">
+                    <img src="./images/Netflix_Logo_PMS.png" alt="">
+                </div><div class="s-content">
+                    <img src="./images/Netflix_Logo_PMS.png" alt="">
+                </div><div class="s-content">
+                    <img src="./images/Netflix_Logo_PMS.png" alt="">
+                </div><div class="s-content">
+                    <img src="./images/Netflix_Logo_PMS.png" alt="">
+                </div><div class="s-content">
+                    <img src="./images/Netflix_Logo_PMS.png" alt="">
+                </div><div class="s-content">
+                    <img src="./images/Netflix_Logo_PMS.png" alt="">
+                </div><div class="s-content">
+                    <img src="./images/Netflix_Logo_PMS.png" alt="">
+                </div><div class="s-content">
+                    <img src="./images/Netflix_Logo_PMS.png" alt="">
+                </div><div class="s-content">
+                    <img src="./images/Netflix_Logo_PMS.png" alt="">
+                </div><div class="s-content">
+                    <img src="./images/Netflix_Logo_PMS.png" alt="">
+                </div><div class="s-content">
+                    <img src="./images/Netflix_Logo_PMS.png" alt="">
+                </div><div class="s-content">
+                    <img src="./images/Netflix_Logo_PMS.png" alt="">
+                </div><div class="s-content">
+                    <img src="./images/Netflix_Logo_PMS.png" alt="">
+                </div><div class="s-content">
+                    <img src="./images/Netflix_Logo_PMS.png" alt="">
+                </div><div class="s-content">
+                    <img src="./images/Netflix_Logo_PMS.png" alt="">
+                </div><div class="s-content">
+                    <img src="./images/Netflix_Logo_PMS.png" alt="">
+                </div> -->
+            </div>
+        </div>
+        <div class="con-overlay"></div>
+    </div>
+
+    <script>
+        var form=document.querySelector("form")
+        var btn=document.querySelectorAll(".btn")
+        var input=document.querySelector("input")
+        var show=document.querySelector('.s')
+        var search=document.querySelector("#search")
+        btn.forEach((btnss)=>{
+            btnss.addEventListener("mouseenter",function(e){
+                console.log(btnss.innerHTML);
+                input.value=btnss.innerHTML
+                input.style.color="red"
+                var value=input.value
+                movieData(value)
+            })
+        })
+       function movieData(value){
+        console.log(value);
+        const imgUrl = "https://image.tmdb.org/t/p/w1280";
+        fetch(`https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=${value}`)
+        .then(response=> response.json())
+        .then(movie=>{
+            console.log(movie.results);
+            var array=movie.results
+            show.innerHTML=array.map((ar)=>{
+                return `
+                <div class="s-content">
+                <img src="${imgUrl}${ar.poster_path}" alt="">
+                <h1>${ar.title}</h1>
+                <button class="book">Book Now!</button>
+                </div>`
+            })
+        })
+       }
+       search.addEventListener("click",function(e){
+        var inp=input.value
+        movieData(inp)
+       })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
